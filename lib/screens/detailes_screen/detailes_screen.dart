@@ -1,9 +1,15 @@
+import 'package:elnemr_invoice/core/strings.dart';
+import 'package:elnemr_invoice/data/data_source/remot/firebase_manager.dart';
+import 'package:elnemr_invoice/data/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../core/colors.dart';
-import '../../core/constants.dart';
+import '../shared.dart';
 
 class DetailesScreen extends StatelessWidget {
-  const DetailesScreen({super.key});
+  final Invoice? invoice;
+
+  const DetailesScreen({super.key, required this.invoice});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class DetailesScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      ' أحمد سامي محمد محمود',
+                      invoice!.name,
                       style: Theme.of(context).textTheme.headline1,
                       overflow: TextOverflow.ellipsis,
                       textDirection: TextDirection.rtl,
@@ -34,8 +40,9 @@ class DetailesScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Image.asset(
-                'assets/images/test_Invoice.png',
+              FadeInImage.assetNetwork(
+                placeholder: 'assets/images/giphy.gif',
+                image: invoice!.imageUrl,
                 width: MediaQuery.of(context).size.width * 0.90,
                 height: MediaQuery.of(context).size.height * 0.70,
                 fit: BoxFit.fill,
@@ -55,7 +62,7 @@ class DetailesScreen extends StatelessWidget {
             decoration: BoxDecoration(
                 color: cyanColor, borderRadius: BorderRadius.circular(20)),
             child: Text(
-              'Total : ${dummyUsersData[1].total} EGP',
+              'Total : ${invoice!.total} EGP',
               style: Theme.of(context)
                   .textTheme
                   .headline2
@@ -64,15 +71,44 @@ class DetailesScreen extends StatelessWidget {
           ),
           ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              ))),
-              onPressed: () {},
+                    borderRadius: BorderRadius.circular(18.0),
+                  ))),
+              onPressed: () async{
+                await alertDialog(context);
+
+                //
+              },
               child: const Text('مسح الفاتورة'))
         ],
       ),
     );
+  }
+
+  alertDialog(BuildContext context)async{
+    await Alert(
+                  context: context,
+                  type: AlertType.error,
+                  title: "تنبيه",
+                  desc: "هل انت متأكد من حذف الفاتوره",
+                  buttons: [
+                    DialogButton(
+                      onPressed: () {
+                        FirebaseHelper().deleteUser(invoice!.id,invoice!.imageUrl);
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                        showSnakBarSuccess(context,AppStrings.deleteMessage,redColor);
+                      },
+                      width: 120,
+                      child: const Text(
+                        "حذف",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    )
+                  ],
+                ).show();
+
   }
 }

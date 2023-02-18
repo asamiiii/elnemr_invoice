@@ -3,6 +3,7 @@ import 'package:elnemr_invoice/core/strings.dart';
 import 'package:elnemr_invoice/screens/add_invoice_screen/add_invoice_vm.dart';
 import 'package:flutter/material.dart';
 import '../../core/colors.dart';
+import '../shared.dart';
 
 class AddInoviceScreen extends StatefulWidget {
   final File image;
@@ -109,9 +110,12 @@ class _AddInoviceScreenState extends State<AddInoviceScreen> {
                           total: totalInvoiceController!.text,
                           date: DateTime.now(),
                         );
+                        // ignore: use_build_context_synchronously
                         hideLoading(context);
+                        // ignore: use_build_context_synchronously
                         hideLoading(context);
-                        showSnakBarSuccess(context);
+                        // ignore: use_build_context_synchronously
+                        showSnakBarSuccess(context,AppStrings.successMessage,greenColor);
                       },
                       style: ButtonStyle(
                           backgroundColor:
@@ -131,56 +135,5 @@ class _AddInoviceScreenState extends State<AddInoviceScreen> {
     );
   }
 
-  showSnakBarSuccess(BuildContext context) {
-    final snackBar = SnackBar(
-      backgroundColor: greenColor,
-      content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            AppStrings.successMessage,
-            textAlign: TextAlign.center,
-            style:Theme.of(context).textTheme.headline2,
-          ),
-        ],
-      ),
-      action: SnackBarAction(
-        textColor: whiteColor,
-        label: 'ok',
-        onPressed: () {
-          // Some code to undo the change.
-        },
-      ),
-    );
-
-    // Find the ScaffoldMessenger in the widget tree
-    // and use it to show a SnackBar.
-    return ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  showLoading(BuildContext context, String message,
-      {bool isCancellable = true}) {
-    return showDialog(
-      context: context,
-      barrierDismissible: isCancellable,
-      builder: (context) {
-        return AlertDialog(
-          title: Row(
-            children: [
-              Text(message),
-              const SizedBox(
-                width: 15,
-              ),
-              const CircularProgressIndicator()
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  hideLoading(BuildContext context) {
-    Navigator.of(context).pop();
-  }
+  
 }
