@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644738007899",
+    "project_id": "elnemr-57623",
+    "storage_bucket": "elnemr-57623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644738007899:android:81cc5f41eedb66d989d07e",
+        "android_client_info": {
+          "package_name": "com.example.elnemr_invoice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644738007899-an0opk8it6tj1omttrte4btvt30sqtne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeqYwLBfAReIca2H7yvXkm-TdKkWwGd_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644738007899-an0opk8it6tj1omttrte4btvt30sqtne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

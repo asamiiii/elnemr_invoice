@@ -1,15 +1,40 @@
 
+
 class Invoice {
-  final  String id;
+  final  String? id;
   final  String name; //!  Invoice Name and user name is the same 
   final  String total;
+  final  String imageUrl;
   final  DateTime date;
 
   Invoice({
-    required this.id,
+    this.id,
     required this.name,
     required this.total,
+    required this.imageUrl,
     required this.date,
   });
+
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'total': total,
+      'imageUrl':imageUrl,
+      'date': date.millisecondsSinceEpoch,
+    };
+  }
+
+  factory Invoice.fromJson(Map<String, dynamic> map) {
+    return Invoice(
+      id: map['id'] as String,
+      name: map['name'] as String,
+      total: map['total'] as String,
+      imageUrl: map['imageUrl'],
+      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
+    );
+  }
+
 
 }

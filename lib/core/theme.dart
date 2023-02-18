@@ -13,7 +13,7 @@ ThemeData? theme = ThemeData(
     )
   ),
   //! Scaffold Theme
-  scaffoldBackgroundColor:whiteColor,
+  scaffoldBackgroundColor:scaffoldColor,
   textTheme: const TextTheme(
     headline1: TextStyle(
       fontSize:20,
@@ -22,7 +22,11 @@ ThemeData? theme = ThemeData(
       
     ),
     headline2: TextStyle(
-      fontSize: 15,
+      fontSize: 13,
+      fontWeight: FontWeight.bold
+    ),
+    headline3: TextStyle(
+      fontSize: 10,
       fontWeight: FontWeight.bold
     ),
   )
