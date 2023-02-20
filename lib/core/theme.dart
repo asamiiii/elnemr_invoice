@@ -1,10 +1,11 @@
 import 'package:elnemr_invoice/core/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData? theme = ThemeData(
   //! AppBar Theme
   appBarTheme: AppBarTheme(
-    backgroundColor: cyanColor,
+    backgroundColor: nemrYellow,
     elevation: 0,
     centerTitle: true,
     titleTextStyle: TextStyle(
@@ -14,18 +15,20 @@ ThemeData? theme = ThemeData(
   ),
   //! Scaffold Theme
   scaffoldBackgroundColor:scaffoldColor,
-  textTheme: const TextTheme(
-    headline1: TextStyle(
+  textTheme:  TextTheme(
+
+    headline1: GoogleFonts.notoKufiArabic( 
+
       fontSize:20,
       fontWeight: FontWeight.bold,
-      overflow: TextOverflow.ellipsis,
       
+    
     ),
-    headline2: TextStyle(
-      fontSize: 13,
+    headline2: GoogleFonts.notoKufiArabic(
+      fontSize: 15,
       fontWeight: FontWeight.bold
     ),
-    headline3: TextStyle(
+    headline3: GoogleFonts.notoKufiArabic(
       fontSize: 10,
       fontWeight: FontWeight.bold
     ),

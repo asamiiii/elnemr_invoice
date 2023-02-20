@@ -1,7 +1,12 @@
+import 'dart:io';
+import 'package:elnemr_invoice/core/colors.dart';
+import 'package:path/path.dart' as p;
 import 'package:elnemr_invoice/core/strings.dart';
 import 'package:elnemr_invoice/data/data_source/remot/firebase_manager.dart';
 import 'package:elnemr_invoice/screens/detailes_screen/detailes_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import '../add_invoice_screen/add_invoice_screen.dart';
 import 'home_widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,6 +59,31 @@ class _HomePageState extends State<HomePage> {
                     itemCount: list.length),
               );
             }),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: nemrYellow,
+              onPressed: () async {
+                final pickedFile = await ImagePicker().pickImage(
+            source: ImageSource.camera,
+            //maxHeight: 400,
+            //maxWidth: 300,
+            imageQuality: 70,
+          );
+          if (pickedFile != null) {
+            final imageFile = File(pickedFile.path);
+            //debugPrint(p.basename(pickedFile.path));
+            // ignore: use_build_context_synchronously
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddInoviceScreen(
+                      image: imageFile, imagePath: p.basename(pickedFile.path)),
+                ));
+          } else {
+            debugPrint('No image selected.');
+          }
+              },
+              child:  Icon(Icons.camera_alt,color:blackColor,),
+            ),
       ),
     );
   }

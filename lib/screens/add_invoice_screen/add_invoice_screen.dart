@@ -5,27 +5,16 @@ import 'package:flutter/material.dart';
 import '../../core/colors.dart';
 import '../shared.dart';
 
-class AddInoviceScreen extends StatefulWidget {
+// ignore: must_be_immutable
+class AddInoviceScreen extends StatelessWidget {
   final File image;
   final String imagePath;
-  const AddInoviceScreen(
+   AddInoviceScreen(
       {super.key, required this.image, required this.imagePath});
 
-  @override
-  State<AddInoviceScreen> createState() => _AddInoviceScreenState();
-}
+  TextEditingController? userNameController=TextEditingController();
 
-class _AddInoviceScreenState extends State<AddInoviceScreen> {
-  TextEditingController? userNameController;
-
-  TextEditingController? totalInvoiceController;
-
-  @override
-  void initState() {
-    super.initState();
-    userNameController = TextEditingController();
-    totalInvoiceController = TextEditingController();
-  }
+  TextEditingController? totalInvoiceController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +54,8 @@ class _AddInoviceScreenState extends State<AddInoviceScreen> {
               const SizedBox(
                 height: 10,
               ),
-              Image.file(
-                widget.image,
+                Image.file(
+                image,
                 width: MediaQuery.of(context).size.width * 0.90,
                 height: MediaQuery.of(context).size.height * 0.65,
                 fit: BoxFit.fill,
@@ -105,8 +94,8 @@ class _AddInoviceScreenState extends State<AddInoviceScreen> {
                         await AddInvoiceVM().addInvoice(
                           context: context,
                           clientName: userNameController!.text,
-                          image: widget.image,
-                          imagePath: widget.imagePath,
+                          image: image,
+                          imagePath: imagePath,
                           total: totalInvoiceController!.text,
                           date: DateTime.now(),
                         );
@@ -134,6 +123,4 @@ class _AddInoviceScreenState extends State<AddInoviceScreen> {
       ),
     );
   }
-
-  
 }
