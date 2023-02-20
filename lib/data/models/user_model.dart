@@ -5,6 +5,8 @@ class Invoice {
   final  String name; //!  Invoice Name and user name is the same 
   final  String total;
   final  String imageUrl;
+  final  String notes;
+  final  bool isDelivered;
   final  DateTime date;
 
   Invoice({
@@ -12,6 +14,8 @@ class Invoice {
     required this.name,
     required this.total,
     required this.imageUrl,
+    required this.notes,
+    required this.isDelivered,
     required this.date,
   });
 
@@ -22,6 +26,8 @@ class Invoice {
       'name': name,
       'total': total,
       'imageUrl':imageUrl,
+      'notes':notes,
+      'isDelivered':isDelivered,
       'date': date.millisecondsSinceEpoch,
     };
   }
@@ -32,6 +38,8 @@ class Invoice {
       name: map['name'] as String,
       total: map['total'] as String,
       imageUrl: map['imageUrl'],
+      notes: map['notes'],
+      isDelivered: map['isDelivered'],
       date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
     );
   }

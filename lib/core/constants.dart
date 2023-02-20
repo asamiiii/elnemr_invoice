@@ -2,7 +2,7 @@ import 'package:elnemr_invoice/data/models/user_model.dart';
 
 
 //! dummy Data 
-List<Invoice> dummyUsersData = [
+/*List<Invoice> dummyUsersData = [
   Invoice(
       id: '1',
       name: '  تتتتتت سامي محمد محمود',
@@ -63,4 +63,4 @@ List<Invoice> dummyUsersData = [
       total: '1560',
       imageUrl: '',
       date: DateTime.now()),
-];
+];*/

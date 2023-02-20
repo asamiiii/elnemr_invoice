@@ -13,6 +13,8 @@ class AddInvoiceVM {
       String? imagePath,
       String? clientName,
       String? total,
+      String? notes,
+      bool? isDelivered,
       DateTime? date}) async {
     String imageUrl =
         await FirebaseHelper().uploadImageOnFirebaseStorage(image!, imagePath!);
@@ -21,6 +23,8 @@ class AddInvoiceVM {
       total: total ?? '',
       date: date!,
       imageUrl: imageUrl,
+      isDelivered:isDelivered! ,
+      notes: notes??''
     );
 
     

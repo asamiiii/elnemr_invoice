@@ -25,7 +25,7 @@ class DetailesScreen extends StatelessWidget {
           )),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top:130.0),
+          padding: const EdgeInsets.only(top: 130.0,left: 10,right: 10),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +38,7 @@ class DetailesScreen extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: 'assets/images/giphy.gif',
                     image: invoice!.imageUrl,
-                    width: MediaQuery.of(context).size.width * 0.90,
+                    //width: MediaQuery.of(context).size.width * 0.90,
                     height: MediaQuery.of(context).size.height * 0.70,
                     fit: BoxFit.fill,
                   ),
@@ -46,40 +46,46 @@ class DetailesScreen extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TotalContainer(total: invoice!.total),
+                    Expanded(
+                      child: Text(
+                        invoice?.isDelivered == false
+                            ? AppStrings.isDeliveredFalse
+                            : AppStrings.isDeliveredTrue,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                            color: invoice?.isDelivered == false
+                                ? redColor
+                                : greenColor,
+                                overflow: TextOverflow.ellipsis),
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20,),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ))),
+                    onPressed: () async {
+                      await alertDialog(context);
+
+                      //
+                    },
+                    child: const Text('مسح الفاتورة'))
               ],
             ),
           ),
         ),
-      ),
-      bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            decoration: BoxDecoration(
-                color: cyanColor, borderRadius: BorderRadius.circular(20)),
-            child: Text(
-              'Total : ${invoice!.total} EGP',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline2
-                  ?.copyWith(color: whiteColor),
-            ),
-          ),
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ))),
-              onPressed: () async {
-                await alertDialog(context);
-
-                //
-              },
-              child: const Text('مسح الفاتورة'))
-        ],
       ),
     );
   }

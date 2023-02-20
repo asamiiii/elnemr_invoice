@@ -20,6 +20,8 @@ class FirebaseHelper {
       required String clientName,
       required String total,
       required String imageUrl,
+      required String notes,
+      required bool isDelivered,
       required DateTime date}) async {
     var collection = getInvoiceCollection();
     var docRef = collection.doc();
@@ -28,6 +30,9 @@ class FirebaseHelper {
         name: clientName,
         total: total,
         imageUrl: imageUrl,
+        isDelivered: isDelivered,
+        notes: notes,
+
         date: date));
   }
 

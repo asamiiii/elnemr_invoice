@@ -46,6 +46,7 @@ dependencies:
   rflutter_alert: ^2.0.4
   google_fonts: ^4.0.3
   intl: ^0.18.0
+  provider: ^6.0.5
   
 
 dev_dependencies:

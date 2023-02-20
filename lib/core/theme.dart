@@ -25,7 +25,7 @@ ThemeData? theme = ThemeData(
     
     ),
     headline2: GoogleFonts.notoKufiArabic(
-      fontSize: 15,
+      fontSize: 12,
       fontWeight: FontWeight.bold
     ),
     headline3: GoogleFonts.notoKufiArabic(
