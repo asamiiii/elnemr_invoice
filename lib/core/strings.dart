@@ -11,4 +11,8 @@ class AppStrings{
   static String isDeliveredFalse='العميل لم يستلم البضاعة حتي الان';
   static String isDeliveredTrue='العميل استلم البضاعة';
   static String editInvoice='تعديل الفاتورة';
+  static String editInvoiceProgress='جاري التعديل';
+  static String editInvoiceDone='تم التعديل';
+  static String notesInvoiceisNotExist='لا يوجد أي ملاحظات';
+
 } 

@@ -85,4 +85,16 @@ class FirebaseHelper {
   deleteImageFromCloud(String url) {
     FirebaseStorage.instance.refFromURL(url).delete();
   }
+
+  Future<void> updateTask(String taskId,Invoice invoice) {
+  var collection = getInvoiceCollection();
+  var docRef=collection.doc(taskId);
+  return docRef.update({
+      'name': invoice.name,
+      'total': invoice.total,
+      'imageUrl':invoice.imageUrl,
+      'notes':invoice.notes,
+      'isDelivered':invoice.isDelivered,
+  });
+    }
 }

@@ -1,9 +1,7 @@
 import 'package:elnemr_invoice/core/theme.dart';
-import 'package:elnemr_invoice/screens/home_screen/home_provider.dart';
 import 'package:elnemr_invoice/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async{

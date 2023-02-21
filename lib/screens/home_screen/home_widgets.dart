@@ -1,13 +1,10 @@
-import 'dart:io';
-
+import 'package:elnemr_invoice/screens/edite_screen/edite_screen.dart';
 import 'package:elnemr_invoice/data/models/user_model.dart';
-import 'package:elnemr_invoice/screens/home_screen/home_provider.dart';
 import 'package:elnemr_invoice/screens/search_screen.dart/search_screen.dart';
 import 'package:elnemr_invoice/screens/shared.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import '../../core/colors.dart';
 import '../../core/strings.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -57,7 +54,7 @@ class InvoiceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = DateFormat.yMMMEd().format(invoice!.date);
+    String formattedDate = DateFormat.yMMMEd().format(invoice!.date!);
     return Slidable(
       key: const Key('d'),
       startActionPane: ActionPane(
@@ -65,11 +62,8 @@ class InvoiceItem extends StatelessWidget {
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (context) async {
-              await showBottomSheetTask(
-                context,
-                invoice: invoice,
-              );
+            onPressed: (context)  {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditeScreen(invoice: invoice!),));
             },
             backgroundColor: nemrYellow,
             foregroundColor: blackColor,
@@ -146,7 +140,7 @@ class InvoiceItem extends StatelessWidget {
   }
 }
 
-Future showBottomSheetTask(BuildContext context,
+/*Future showBottomSheetTask(BuildContext context,
     {required Invoice? invoice, File? imageFile}) {
   TextEditingController? invoiceNameController = TextEditingController(
     text: invoice?.name,
@@ -240,20 +234,42 @@ Future showBottomSheetTask(BuildContext context,
                               ),
                               imageFile == null
                                   ? InkWell(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        final pickedFile =
+                                            await ImagePicker().pickImage(
+                                          source: ImageSource.camera,
+                                          imageQuality: 70,
+                                        );
+                                        if (pickedFile != null) {
+                                          final imageFile =
+                                              File(pickedFile.path);
+                                          imageUrl = await FirebaseHelper()
+                                              .uploadImageOnFirebaseStorage(
+                                                  imageFile,
+                                                  p.basename(pickedFile.path));
+                                          //debugPrint(p.basename(pickedFile.path));
+                                          // ignore: use_build_context_synchronously
+
+                                        } else {
+                                          debugPrint('No image selected.');
+                                        }
+                                      },
                                       child: Stack(children: [
                                         ImageFromCloud(
                                           url: invoice!.imageUrl,
                                           hight: 200,
                                           width: 150,
                                         ),
-                                        Icon(Icons.change_circle_rounded,color:nemrYellow,)
+                                        Icon(
+                                          Icons.change_circle_rounded,
+                                          color: nemrYellow,
+                                        )
                                       ]),
                                     )
-                                  : ImageFromLocal(file: null!),
+                                  : ImageFromLocal(file: imageFile),
                             ],
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
@@ -267,4 +283,4 @@ Future showBottomSheetTask(BuildContext context,
               );
             });
       });
-}
+}*/

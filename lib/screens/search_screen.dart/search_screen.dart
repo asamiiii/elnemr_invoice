@@ -3,9 +3,7 @@ import 'package:elnemr_invoice/screens/detailes_screen/detailes_screen.dart';
 import 'package:elnemr_invoice/screens/home_screen/home_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../core/colors.dart';
-import 'search_widgets.dart';
 
 // ignore: must_be_immutable
 class SearchScreen extends StatefulWidget {

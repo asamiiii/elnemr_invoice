@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:elnemr_invoice/core/strings.dart';
 import 'package:elnemr_invoice/screens/add_invoice_screen/add_invoice_vm.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../core/colors.dart';
 import '../shared.dart';
 
@@ -10,7 +9,7 @@ import '../shared.dart';
 class AddInoviceScreen extends StatefulWidget {
   final File image;
   final String imagePath;
-  AddInoviceScreen({super.key, required this.image, required this.imagePath});
+  const AddInoviceScreen({super.key, required this.image, required this.imagePath});
 
   @override
   State<AddInoviceScreen> createState() => _AddInoviceScreenState();

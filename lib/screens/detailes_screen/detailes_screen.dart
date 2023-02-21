@@ -1,7 +1,6 @@
 import 'package:elnemr_invoice/core/strings.dart';
 import 'package:elnemr_invoice/data/data_source/remot/firebase_manager.dart';
 import 'package:elnemr_invoice/data/models/user_model.dart';
-import 'package:elnemr_invoice/screens/search_screen.dart/search_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../core/colors.dart';
@@ -63,9 +62,21 @@ class DetailesScreen extends StatelessWidget {
                                 textDirection: TextDirection.rtl,
                                 textAlign: TextAlign.center,
                       ),
+
                     )
                   ],
                 ),
+                const SizedBox(height: 20,),
+                Text(
+                        invoice?.notes == ''
+                            ? AppStrings.notesInvoiceisNotExist
+                            : invoice!.notes,
+                        style: Theme.of(context).textTheme.headline2?.copyWith(
+                                overflow: TextOverflow.ellipsis),
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                      ),
+
                 const SizedBox(height: 20,),
                 ElevatedButton(
                     style: ButtonStyle(

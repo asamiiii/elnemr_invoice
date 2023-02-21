@@ -7,7 +7,7 @@ class Invoice {
   final  String imageUrl;
   final  String notes;
   final  bool isDelivered;
-  final  DateTime date;
+  final  DateTime? date;
 
   Invoice({
     this.id,
@@ -16,7 +16,7 @@ class Invoice {
     required this.imageUrl,
     required this.notes,
     required this.isDelivered,
-    required this.date,
+    this.date,
   });
 
 
@@ -28,7 +28,7 @@ class Invoice {
       'imageUrl':imageUrl,
       'notes':notes,
       'isDelivered':isDelivered,
-      'date': date.millisecondsSinceEpoch,
+      'date': date!.millisecondsSinceEpoch,
     };
   }
 
